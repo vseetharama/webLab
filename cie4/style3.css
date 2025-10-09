@@ -1,0 +1,92 @@
+
+.section4 {
+margin-bottom: 40px;
+font-family: Arial;
+min-height: 100dvh;
+}
+
+.section4 .container {
+background-color: blue;
+color: white;
+}
+
+.section4 .headings {
+padding: 10px 20px 30px 20px;
+}
+
+.section4 .headings h1 {
+margin-bottom: 10px;
+}
+
+.section4 .headings h2 {
+font-weight: normal;
+}
+
+.section4 .container2 {
+background-color: white;
+border-left: 5px solid blue;
+border-bottom: 2px solid blue;
+color: black;
+}
+
+.section4 .container2 h3 {
+color: blue;
+}
+
+.section4 .inner-container {
+display: flex;
+flex-direction: column;
+}
+
+.section4 .inner-container .column1 {
+width: 100%;
+padding: 10px;
+}
+.section4 .inner-container .column2 {
+width: 100%;
+padding: 10px;
+display: flex;
+flex-direction: row;
+gap: 10px;
+}
+
+.section4 .column2 a {
+text-decoration: none;
+padding: 10px 20px;
+border-radius: 50px;
+background-color: blue;
+color: white;
+text-align: center;
+font-size: 14px;
+}
+
+.section4 .column2 a.active {
+text-decoration: none;
+padding: 10px 20px;
+border-radius: 50px;
+background-color: white;
+color: blue;
+border: 2px solid blue;
+font-weight: bold;
+text-align: center;
+font-size: 14px;
+}
+
+.section4 .column1 h3, .column1 p {
+margin-bottom: 20px;
+}
+
+.section4 .column1 a {
+text-decoration: none;
+color: blue;
+}
+
+.section4 .sidebar {
+background-color: rgba(0,0,255, 0.1);
+padding: 20px 10px;
+color: blue;
+}
+
+.section4 .sidebar h4 {
+margin-bottom: 20px;
+}
