@@ -1,56 +1,70 @@
 // Convert JSON text to JavaScript object
 function convertJsonToObject() {
-    const jsonInput = document.getElementById('jsonInput').value;
-    try {
-      const jsonObject = JSON.parse(jsonInput);
-      document.getElementById('objectOutput').textContent = JSON.stringify(jsonObject, null, 2);
-    } catch (error) {
-      document.getElementById('objectOutput').textContent = 'Invalid JSON!';
-    }
+  const text = document.getElementById("jsonInput").value;
+  try {
+    const obj = JSON.parse(text);
+    document.getElementById("objectOutput").textContent =JSON.stringify(obj, null, 2);
+  } catch {
+    document.getElementById("objectOutput").textContent = "Invalid JSON!";
   }
+}
   
   // Convert JSON date text to JavaScript Date object
   function convertJsonToDate() {
-    const dateInput = document.getElementById('dateInput').value;
-    try {
-      const jsonDate = JSON.parse(dateInput);
-      const dateObject = new Date(jsonDate.date);
-      document.getElementById('dateOutput').textContent = `Date Object: ${dateObject}`;
-    } catch (error) {
-      document.getElementById('dateOutput').textContent = 'Invalid JSON or date format!';
-    }
+  const text = document.getElementById("dateInput").value;
+
+  try {
+    const obj = JSON.parse(text);
+    const date = new Date(obj.date);
+    document.getElementById("dateOutput").textContent = date.toString();
+  } catch {
+    document.getElementById("dateOutput").textContent = "Invalid JSON or date!";
   }
+}
+
+
   
   // Convert JSON to CSV
   function convertJsonToCsv() {
-    const jsonCsvInput = document.getElementById('jsonCsvInput').value;
-    try {
-      const jsonArray = JSON.parse(jsonCsvInput);
-      const headers = Object.keys(jsonArray[0]);
-      const csvRows = [
-        headers.join(','),
-        ...jsonArray.map(row => headers.map(header => row[header]).join(','))
-      ];
-      document.getElementById('csvOutput').textContent = csvRows.join('\n');
-    } catch (error) {
-      document.getElementById('csvOutput').textContent = 'Invalid JSON format!';
-    }
+  const text = document.getElementById("jsonCsvInput").value;
+
+  try {
+    const arr = JSON.parse(text);
+    const headers = Object.keys(arr[0]);
+    let csv = headers.join(",") + "\n";
+
+    arr.forEach(row => {
+      csv += headers.map(h => row[h]).join(",") + "\n";
+    });
+
+    document.getElementById("csvOutput").textContent = csv.trim();
+  } catch {
+    document.getElementById("csvOutput").textContent = "Invalid JSON!";
   }
+}
   
   // Convert CSV to JSON
   function convertCsvToJson() {
-    const csvToJsonInput = document.getElementById('csvToJsonInput').value;
-    const lines = csvToJsonInput.split('\n');
-    const headers = lines[0].split(',');
-    const jsonArray = lines.slice(1).map(line => {
-      const values = line.split(',');
-      return headers.reduce((object, header, index) => {
-        object[header] = values[index];
-        return object;
-      }, {});
+  const text = document.getElementById("csvToJsonInput").value;
+
+  const lines = text.split("\n");
+  const headers = lines[0].split(",");
+
+  const json = lines.slice(1).map(line => {
+    const values = line.split(",");
+    const obj = {};
+
+    headers.forEach((h, i) => {
+      obj[h] = values[i];
     });
-    document.getElementById('jsonOutput').textContent = JSON.stringify(jsonArray, null, 2);
-  }
+
+    return obj;
+  });
+
+  document.getElementById("jsonOutput").textContent =
+    JSON.stringify(json, null, 2);
+}
+
   
   // Create a hash using crypto module
   // Create a hash using the Web Crypto API (SHA-256)
